@@ -1,7 +1,7 @@
 package question2;
-
-import javax.swing.*;
 import java.util.*;
+
+import javax.swing.JFrame;
 
 public class IHMListe2 extends JFrame {
     public IHMListe2() {

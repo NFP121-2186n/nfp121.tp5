@@ -1,9 +1,10 @@
 package question2;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 // à  compléter
 import java.util.StringTokenizer;
+
+import question1.Ensemble;
 
 public class Chapitre2CoreJava2 {
 
@@ -12,12 +13,15 @@ public class Chapitre2CoreJava2 {
      * 
      **/
     public static List<String> listeDesMots() {
-        List<String> liste = null; // à  compléter
-
+        List<String> liste = new ArrayList<>();
+        Ensemble e = new Ensemble<String>();
         StringTokenizer st = new StringTokenizer(Chapitre2CoreJava2.CHAPITRE2,
                 "[](){};, :.\n\"");
         // à  compléter
-
+        while (st.hasMoreTokens()) {
+            e.add(st.nextToken());
+        }
+        liste.addAll(e);
         return liste;
     }
 
@@ -28,9 +32,19 @@ public class Chapitre2CoreJava2 {
      * @param liste la liste des mots
      */
     public static Map<String, Integer> occurrencesDesMots(List<String> liste) {
-        Map<String, Integer> table = null; // à  compléter
-        // à  compléter
-        // à  compléter
+        Map<String, Integer> table = new HashMap<String, Integer>();
+        Iterator<String> it=liste.iterator();
+        while(it.hasNext()) {
+        	String s = it.next();
+        	//si le mot n'existe pas dans la table deja
+        	if(!table.containsKey(s)) {
+        		table.put(s, 1);
+        	}
+        	//si le mot existe deja, ajouter +1 au nombre d'ccurences
+        	else {
+        		table.put(s, table.get(s) + 1);
+        	}
+        }
         return table;
     }
 
