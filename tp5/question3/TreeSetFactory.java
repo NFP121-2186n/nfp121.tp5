@@ -1,14 +1,14 @@
 package question3;
 
+import java.util.AbstractCollection;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TreeSetFactory/* à compléter */implements Factory/* à compléter */{
-
+public class TreeSetFactory<E> implements Factory<AbstractCollection<E>>{
 	@Override
-	public Object create() {
+	public AbstractCollection<E> create() {
 		// TODO Auto-generated method stub
-		return null;
+		return new TreeSet<E>();
 	}
 
 }

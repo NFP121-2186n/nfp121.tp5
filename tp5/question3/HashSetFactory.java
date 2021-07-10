@@ -1,14 +1,15 @@
 package question3;
 
 import java.util.Set;
+import java.util.AbstractCollection;
 import java.util.HashSet;
 
-public class HashSetFactory/* à compléter */implements Factory/* à compléter */{
-
+public class HashSetFactory<E> implements Factory<AbstractCollection<E>>{
+ 
 	@Override
-	public Object create() {
+	public AbstractCollection<E> create() {
 		// TODO Auto-generated method stub
-		return null;
+		return new HashSet<E>();
 	}
 
 }

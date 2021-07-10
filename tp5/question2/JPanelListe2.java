@@ -141,6 +141,7 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
 		} else if (ie.getSource() == ordreDecroissant) {
 			originator.set(liste, occurrences);
 			caretaker.addMemento( originator.storeInMemento() );
+			boutonAnnuler.setEnabled(caretaker.hasMemento());
 			Collections.sort(liste, new descendingList());
 			texte.setText(liste.toString());
 		}
@@ -155,7 +156,7 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
 				resultat = true;
 				originator.set(liste, occurrences);
 				caretaker.addMemento( originator.storeInMemento());
-				boutonAnnuler.setEnabled(true);
+				boutonAnnuler.setEnabled(caretaker.hasMemento());
 			}
 		}
 		liste.removeIf(str -> (str.startsWith(prefixe)));
