@@ -99,12 +99,12 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
 				Integer occur = occurrences.get(saisie.getText());
 				afficheur.setText("résultat de la recherche de : " + saisie.getText() + " -->  " + res);
 			} else if (ae.getSource() == boutonRetirer) {
-				annulerAction(saisie.getText());
+				res = retirerDeLaListeTousLesElementsCommencantPar(saisie.getText());
 				afficheur.setText("résultat du retrait de tous les éléments commençant par -->  " + saisie.getText()
 						+ " : " + res);
 
 			} else if (ae.getSource() == boutonAnnuler) {
-				retirerDeLaListeTousLesElementsCommencantPar(saisie.getText());
+				annulerAction();
 				} else if (ae.getSource() == boutonOccurrences) {
 				Integer occur = occurrences.get(saisie.getText());
 				if (occur != null)
@@ -119,23 +119,24 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
 		}
 	}
 
-	private void annulerAction(String text) {
+	private void annulerAction() {
 //		 TODO Auto-generated method stub
 		Memento mem = caretaker.getMemento();
-		List<String> prevText = originator.restoreListFromMemento(mem);
+		liste = originator.restoreListFromMemento(mem);
 		Map<String, Integer> prevOccurences = originator.restoreMapFromMemento(mem);
 		this.occurrences = prevOccurences;
 		boutonAnnuler.setEnabled(caretaker.hasMemento());
-		texte.setText(prevText.toString());
+		texte.setText(liste.toString());
 
 	}
 
 	public void itemStateChanged(ItemEvent ie) {
 		if (ie.getSource() == ordreCroissant) {
 			originator.set(liste, occurrences);
-			caretaker.addMemento( originator.storeInMemento() );
+			Memento memo = originator.storeInMemento();
+			caretaker.addMemento(memo);
 			boutonAnnuler.setEnabled(true);
-			Collections.sort(liste);
+			Collections.sort(this.liste);
 			texte.setText(liste.toString());
 		} else if (ie.getSource() == ordreDecroissant) {
 			originator.set(liste, occurrences);
